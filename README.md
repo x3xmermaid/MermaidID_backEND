@@ -45,23 +45,23 @@ DB_NAME=simple_note_app
 ```
 
 ## End Point List
-/table name <\br>
+/table name <br>
 get 10 first data
 
-?where=+(field name)+(value)<\br>
-example : 3000/tb_product?where=price+10000<\br>
-query in database : "select * from tb_product where price = 10000"<\br>
+?where=+(field name)+(value) <br>
+example : 3000/tb_product?where=price+10000 <br>
+query in database : "select * from tb_product where price = 10000" <br>
 
-?search=(field name)+(value)<\br>
-example : 3000/tb_product?where=name+roti<\br>
-query in database : "select * from tb_product where name like "%roti%"<\br>
+?search=(field name)+(value) <br>
+example : 3000/tb_product?where=name+roti <br>
+query in database : "select * from tb_product where name like "%roti%" <br>
 
-?join=(second table+first table field+second table field)<\br>
-example: 3000/tb_product?where=tb_store+id_product+id_store<\br>
-query in database :<\br>
-"select * from tb_product left join tb_store on id_product=id_store"<\br>
+?join=(second table+first table field+second table field) <br>
+example: 3000/tb_product?where=tb_store+id_product+id_store <br>
+query in database : <br>
+"select * from tb_product left join tb_store on id_product=id_store" <br>
 
-just (where) end point can be used in POST, GET, PATCH, AND DELETE<\br>
+just (where) end point can be used in POST, GET, PATCH, AND DELETE <br>
 
 
 <hr>
