@@ -4,8 +4,8 @@ const con = require('../connection');
 const resp = require('../response')
 
 exports.show = function(req, res){
-    const id = req.params.id    
-    con.query(
+        let id= req.params.id
+        con.query(
                 `SELECT tb_product.id_store, tb_store.store_name, tb_store.location FROM tb_product 
                  INNER JOIN tb_cart on tb_cart.id_product=tb_product.id_product 
                  INNER JOIN tb_store on tb_store.id_store=tb_product.id_store 

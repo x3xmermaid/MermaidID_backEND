@@ -20,8 +20,8 @@ async function sendEmail(email) { // Use Async Javascript Function
 
 	// Setup OAuth Client
 	const oauth2Client = new OAuth2 (
-		"323684778043-uibqc8mra877mmpfkjqud6klni0hbg8r.apps.googleusercontent.com", // ClientID
-		"mFzDrvR155bm_BGsl2B0fwST", // Client Secret
+		process.env.CLIENTID, // ClientID
+		process.env.CLIENTSECRET, // Client Secret
 		"https://developers.google.com/oauthplayground" // Redirect URL
 	)
 
@@ -37,9 +37,9 @@ async function sendEmail(email) { // Use Async Javascript Function
 		service: 'Gmail',
 		auth: {
 			type: "OAuth2",
-			user: "dimasgamers01@gmail.com",
-			clientId: "323684778043-uibqc8mra877mmpfkjqud6klni0hbg8r.apps.googleusercontent.com",
-			clientSecret: "mFzDrvR155bm_BGsl2B0fwST",
+			user: process.env.EMAIL,
+			clientId: process.env.CLIENTID,
+			clientSecret: process.env.CLIENTSECRET,
 			refreshToken: token_refresh,
 			accessToken: acessToken
 		}
@@ -72,7 +72,7 @@ exports.test = function (req, res) {
 exports.create = function (req, res) {
 	// Initialize input from Body
 	let email = req.body.email;
-
+	let s = req.body.email.substring(0, req.body.email.indexOf('@'));
 	if (email === '') { // If Email is Empty
 		res.json({ error: true, message: 'Alamat Email harus di Isi' });
 	} else { // If Email not Empty
@@ -89,7 +89,7 @@ exports.create = function (req, res) {
 					}else{ // If Not exists
 						sendEmail(email); // Call sendEmail() Function
 						connection.query(
-							`INSERT INTO tb_user SET email=?, password=?, full_name='', address='', img_user=''`,
+							`INSERT INTO tb_user SET email=?, password=?, full_name='${s}', address='-', img_user='https://res.cloudinary.com/dvyonb6zt/image/upload/v1563097699/Product/toped_hfullm.png'`,
 							[email, digit],
 							function (err, rows) {
 								if (err) {
