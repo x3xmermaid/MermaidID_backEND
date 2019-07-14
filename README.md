@@ -45,24 +45,24 @@ DB_NAME=simple_note_app
 ```
 
 ## End Point List
-**1. GET**
-* `/(table name)` (get table data)
-* `/(table name)?search=(coloumn table)+(coloumn value)` (Get table data by column table and column value)
-* `/(table name)?join=(table2 name)+(coloumn table)+(coloumn table2)` (Get table data by table field and the field value)
+* /table name
+* get 10 first data
 
+* ?where=+(field name)+(value)
+* example : 3000/tb_product?where=price+10000
+* query in database : "select * from tb_product where price = 10000"
 
+* ?search=(field name)+(value)
+* example : 3000/tb_product?where=name+roti
+* query in database : "select * from tb_product where name like "%roti%"
 
-**2. POST**
-* `/notes`
-* `/category`
+* ?join=(second table+first table field+second table field)
+* example: 3000/tb_product?where=tb_store+id_product+id_store
+* query in database :
+* "select * from tb_product left join tb_store on id_product=id_store"
 
-**3. PATCH**
-* `/notes/:id` (Update notes by id)
-* `/category/:id` (Update category by id)
+* just (where) end point can be used in POST, GET, PATCH, AND DELETE
 
-**4. DELETE**
-* `/notes/:id` (Delete notes by id)
-* `/category/:id` (Delete category by id)
 
 <hr>
 
